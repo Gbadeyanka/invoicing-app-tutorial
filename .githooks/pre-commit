@@ -1,0 +1,5 @@
+#!/bin/sh
+# Blocks a commit if gitleaks finds a secret in the staged changes.
+gitleaks git --pre-commit --staged --redact --verbose || {
+  echo "gitleaks found a secret. Commit blocked."; exit 1;
+}
